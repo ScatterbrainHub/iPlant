@@ -34,7 +34,7 @@ cd iPlant
 npm install
 npm run dev
 ```
-See [GETTINGSTARTED](GETTINGSTARTED) to get started with TanStack app
+See [GETTINGSTARTED](./GETTINGSTARTED) to get started with TanStack app
 
 ## Target Users
 - **Tree Vendors/Nursery Operators** - Expand market reach and manage inventory
@@ -43,7 +43,7 @@ See [GETTINGSTARTED](GETTINGSTARTED) to get started with TanStack app
 - **Agricultural Consultants** - Provide expert services and build client base
 
 ## Contributing
-We welcome contributions from developers passionate about environmental sustainability and agricultural technology. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+We welcome contributions from developers passionate about environmental sustainability and agricultural technology. See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
 
 ## Market Opportunity
 - **$2.5B** addressable market in Kenya's agroforestry sector
@@ -59,7 +59,7 @@ Collaborating with:
 - Research institutions and conservation organizations
 
 ## License
-See [LICENSE](LICENSE) file for details
+See [LICENSE](./LICENSE) file for details
 
 ## Contact
 - **Website**: [Website](https://linktr.ee/scatterbrainhub)
