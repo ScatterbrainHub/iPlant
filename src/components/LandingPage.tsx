@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Moon, Sun, Play, Users, TrendingUp, MapPin, Leaf, BarChart3, Shield, Smartphone, CheckCircle, Menu, X } from 'lucide-react';
+import { Moon, Sun, Play, Users, TrendingUp, MapPin, Leaf, BarChart3, Shield, Smartphone, Menu, X } from 'lucide-react';
 
 const DigitalAgronomist = () => {
     const [isDark, setIsDark] = useState(false);
