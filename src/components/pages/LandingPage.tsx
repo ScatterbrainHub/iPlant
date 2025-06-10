@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Moon, Sun, Play, Users, TrendingUp, MapPin, Leaf, BarChart3, Shield, Smartphone, Menu, X } from 'lucide-react';
+import { Link } from '@tanstack/react-router';
 
 const DigitalAgronomist = () => {
     const [isDark, setIsDark] = useState(false);
@@ -68,11 +69,13 @@ const DigitalAgronomist = () => {
 
                             {/* Auth buttons (hidden on small) */}
                             <div className="hidden md:flex items-center space-x-2">
-                                <button className="bg-lime-500 text-black px-4 py-2 rounded-lg hover:bg-lime-400 transition-colors font-medium">
-                                    Sign Up
+                                <button className="bg-lime-500 text-black px-4 py-2 rounded-lg hover:bg-lime-400 transition-colors font-medium"><Link
+                                    to="/login">
+                                    Sign Up </Link>
                                 </button>
-                                <button className="px-4 py-2 rounded-lg border border-lime-500 text-lime-500 hover:bg-lime-500 hover:text-black transition-colors">
-                                    Login
+                                <button className="px-4 py-2 rounded-lg border border-lime-500 text-lime-500 hover:bg-lime-500 hover:text-black transition-colors"><Link
+                                    to="/login">
+                                    Login</Link>
                                 </button>
                             </div>
 
