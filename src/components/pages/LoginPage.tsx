@@ -1,7 +1,7 @@
 import { Leaf } from "lucide-react"
 import heroImage from '../../assets/login.png';
+import LoginForm from "../login-form";
 
-import { LoginForm } from "@/components/login-form"
 
 export default function LoginPage() {
   return (
@@ -16,7 +16,7 @@ export default function LoginPage() {
           </a>
         </div>
         <div className="flex flex-1 items-center justify-center">
-          <div className="w-full max-w-xs">
+          <div className="w-full max-w">
             <LoginForm />
           </div>
         </div>

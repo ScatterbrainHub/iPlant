@@ -9,12 +9,19 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as MarketplaceRouteImport } from './routes/marketplace'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardWelcomeboardRouteImport } from './routes/dashboard/welcomeboard'
 import { Route as DashboardDashboardRouteImport } from './routes/dashboard/dashboard'
 import { Route as DashboardTreeSeedlingCatalogRouteImport } from './routes/dashboard/TreeSeedlingCatalog'
+import { Route as DashboardSeedlingPageRouteImport } from './routes/dashboard/SeedlingPage'
 
+const MarketplaceRoute = MarketplaceRouteImport.update({
+  id: '/marketplace',
+  path: '/marketplace',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -41,10 +48,17 @@ const DashboardTreeSeedlingCatalogRoute =
     path: '/dashboard/TreeSeedlingCatalog',
     getParentRoute: () => rootRouteImport,
   } as any)
+const DashboardSeedlingPageRoute = DashboardSeedlingPageRouteImport.update({
+  id: '/dashboard/SeedlingPage',
+  path: '/dashboard/SeedlingPage',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/marketplace': typeof MarketplaceRoute
+  '/dashboard/SeedlingPage': typeof DashboardSeedlingPageRoute
   '/dashboard/TreeSeedlingCatalog': typeof DashboardTreeSeedlingCatalogRoute
   '/dashboard/dashboard': typeof DashboardDashboardRoute
   '/dashboard/welcomeboard': typeof DashboardWelcomeboardRoute
@@ -52,6 +66,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/marketplace': typeof MarketplaceRoute
+  '/dashboard/SeedlingPage': typeof DashboardSeedlingPageRoute
   '/dashboard/TreeSeedlingCatalog': typeof DashboardTreeSeedlingCatalogRoute
   '/dashboard/dashboard': typeof DashboardDashboardRoute
   '/dashboard/welcomeboard': typeof DashboardWelcomeboardRoute
@@ -60,6 +76,8 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/marketplace': typeof MarketplaceRoute
+  '/dashboard/SeedlingPage': typeof DashboardSeedlingPageRoute
   '/dashboard/TreeSeedlingCatalog': typeof DashboardTreeSeedlingCatalogRoute
   '/dashboard/dashboard': typeof DashboardDashboardRoute
   '/dashboard/welcomeboard': typeof DashboardWelcomeboardRoute
@@ -69,6 +87,8 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/login'
+    | '/marketplace'
+    | '/dashboard/SeedlingPage'
     | '/dashboard/TreeSeedlingCatalog'
     | '/dashboard/dashboard'
     | '/dashboard/welcomeboard'
@@ -76,6 +96,8 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/login'
+    | '/marketplace'
+    | '/dashboard/SeedlingPage'
     | '/dashboard/TreeSeedlingCatalog'
     | '/dashboard/dashboard'
     | '/dashboard/welcomeboard'
@@ -83,6 +105,8 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/login'
+    | '/marketplace'
+    | '/dashboard/SeedlingPage'
     | '/dashboard/TreeSeedlingCatalog'
     | '/dashboard/dashboard'
     | '/dashboard/welcomeboard'
@@ -91,6 +115,8 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LoginRoute: typeof LoginRoute
+  MarketplaceRoute: typeof MarketplaceRoute
+  DashboardSeedlingPageRoute: typeof DashboardSeedlingPageRoute
   DashboardTreeSeedlingCatalogRoute: typeof DashboardTreeSeedlingCatalogRoute
   DashboardDashboardRoute: typeof DashboardDashboardRoute
   DashboardWelcomeboardRoute: typeof DashboardWelcomeboardRoute
@@ -110,6 +136,20 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marketplace': {
+      id: '/marketplace'
+      path: '/marketplace'
+      fullPath: '/marketplace'
+      preLoaderRoute: typeof MarketplaceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/SeedlingPage': {
+      id: '/dashboard/SeedlingPage'
+      path: '/dashboard/SeedlingPage'
+      fullPath: '/dashboard/SeedlingPage'
+      preLoaderRoute: typeof DashboardSeedlingPageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard/TreeSeedlingCatalog': {
@@ -139,6 +179,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LoginRoute: LoginRoute,
+  MarketplaceRoute: MarketplaceRoute,
+  DashboardSeedlingPageRoute: DashboardSeedlingPageRoute,
   DashboardTreeSeedlingCatalogRoute: DashboardTreeSeedlingCatalogRoute,
   DashboardDashboardRoute: DashboardDashboardRoute,
   DashboardWelcomeboardRoute: DashboardWelcomeboardRoute,

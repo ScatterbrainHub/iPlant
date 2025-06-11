@@ -66,8 +66,8 @@ const Navigation = () => {
     return (
         <>
             <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled
-                    ? `${isDark ? 'bg-gray-900/95' : 'bg-white/95'} backdrop-blur-sm shadow-lg`
-                    : 'bg-transparent'
+                ? `${isDark ? 'bg-gray-900/95' : 'bg-white/95'} backdrop-blur-sm shadow-lg`
+                : 'bg-transparent'
                 }`}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-16">
@@ -107,6 +107,7 @@ const NavLinks = () => {
         { href: '#features', label: 'Features' },
         { href: '#demo', label: 'Demo' },
         { href: '#impact', label: 'Impact' },
+        { href: '/marketplace', label: 'MarketPlace' },
         { href: '#investors', label: 'Investors' },
         { href: '#contact', label: 'Contact' }
     ];

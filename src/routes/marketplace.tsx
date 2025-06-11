@@ -1,10 +1,11 @@
+import MarketPlace from '@/components/pages/MarketPlace'
 import TreeSeedlingCatalog from '@/components/pages/MarketPlace'
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/dashboard/TreeSeedlingCatalog')({
+export const Route = createFileRoute('/marketplace')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  return <div><TreeSeedlingCatalog /></div>
+  return <div><MarketPlace /></div>
 }
