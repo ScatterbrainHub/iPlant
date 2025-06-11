@@ -1,6 +1,5 @@
 import { Leaf } from "lucide-react"
 import heroImage from '../../assets/login.png';
-import { Link } from '@tanstack/react-router'; 
 
 import { LoginForm } from "@/components/login-form"
 

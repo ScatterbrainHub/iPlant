@@ -11,6 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardWelcomeboardRouteImport } from './routes/dashboard/welcomeboard'
+import { Route as DashboardDashboardRouteImport } from './routes/dashboard/dashboard'
+import { Route as DashboardTreeSeedlingCatalogRouteImport } from './routes/dashboard/TreeSeedlingCatalog'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -22,31 +25,75 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardWelcomeboardRoute = DashboardWelcomeboardRouteImport.update({
+  id: '/dashboard/welcomeboard',
+  path: '/dashboard/welcomeboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardDashboardRoute = DashboardDashboardRouteImport.update({
+  id: '/dashboard/dashboard',
+  path: '/dashboard/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardTreeSeedlingCatalogRoute =
+  DashboardTreeSeedlingCatalogRouteImport.update({
+    id: '/dashboard/TreeSeedlingCatalog',
+    path: '/dashboard/TreeSeedlingCatalog',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/dashboard/TreeSeedlingCatalog': typeof DashboardTreeSeedlingCatalogRoute
+  '/dashboard/dashboard': typeof DashboardDashboardRoute
+  '/dashboard/welcomeboard': typeof DashboardWelcomeboardRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/dashboard/TreeSeedlingCatalog': typeof DashboardTreeSeedlingCatalogRoute
+  '/dashboard/dashboard': typeof DashboardDashboardRoute
+  '/dashboard/welcomeboard': typeof DashboardWelcomeboardRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/dashboard/TreeSeedlingCatalog': typeof DashboardTreeSeedlingCatalogRoute
+  '/dashboard/dashboard': typeof DashboardDashboardRoute
+  '/dashboard/welcomeboard': typeof DashboardWelcomeboardRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/dashboard/TreeSeedlingCatalog'
+    | '/dashboard/dashboard'
+    | '/dashboard/welcomeboard'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login'
-  id: '__root__' | '/' | '/login'
+  to:
+    | '/'
+    | '/login'
+    | '/dashboard/TreeSeedlingCatalog'
+    | '/dashboard/dashboard'
+    | '/dashboard/welcomeboard'
+  id:
+    | '__root__'
+    | '/'
+    | '/login'
+    | '/dashboard/TreeSeedlingCatalog'
+    | '/dashboard/dashboard'
+    | '/dashboard/welcomeboard'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LoginRoute: typeof LoginRoute
+  DashboardTreeSeedlingCatalogRoute: typeof DashboardTreeSeedlingCatalogRoute
+  DashboardDashboardRoute: typeof DashboardDashboardRoute
+  DashboardWelcomeboardRoute: typeof DashboardWelcomeboardRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +112,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/TreeSeedlingCatalog': {
+      id: '/dashboard/TreeSeedlingCatalog'
+      path: '/dashboard/TreeSeedlingCatalog'
+      fullPath: '/dashboard/TreeSeedlingCatalog'
+      preLoaderRoute: typeof DashboardTreeSeedlingCatalogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/dashboard': {
+      id: '/dashboard/dashboard'
+      path: '/dashboard/dashboard'
+      fullPath: '/dashboard/dashboard'
+      preLoaderRoute: typeof DashboardDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/welcomeboard': {
+      id: '/dashboard/welcomeboard'
+      path: '/dashboard/welcomeboard'
+      fullPath: '/dashboard/welcomeboard'
+      preLoaderRoute: typeof DashboardWelcomeboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LoginRoute: LoginRoute,
+  DashboardTreeSeedlingCatalogRoute: DashboardTreeSeedlingCatalogRoute,
+  DashboardDashboardRoute: DashboardDashboardRoute,
+  DashboardWelcomeboardRoute: DashboardWelcomeboardRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
