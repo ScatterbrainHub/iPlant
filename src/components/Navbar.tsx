@@ -32,11 +32,12 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#features" className="hover:text-lime-500 transition-colors">Features</a>
-            <a href="#demo" className="hover:text-lime-500 transition-colors">Demo</a>
-            <a href="#impact" className="hover:text-lime-500 transition-colors">Impact</a>
-            <a href="#investors" className="hover:text-lime-500 transition-colors">Investors</a>
-            <a href="#contact" className="hover:text-lime-500 transition-colors">Contact</a>
+            <a href="/#features" className="hover:text-lime-500 transition-colors">Features</a>
+            <a href="/#demo" className="hover:text-lime-500 transition-colors">Demo</a>
+            <a href="/#impact" className="hover:text-lime-500 transition-colors">Impact</a>
+            <a href="/marketplace" className="hover:text-lime-500 transition-colors">MarketPlace</a>
+            <a href="/#investors" className="hover:text-lime-500 transition-colors">Investors</a>
+            <a href="/#contact" className="hover:text-lime-500 transition-colors">Contact</a>
           </div>
 
           {/* Actions & Burger */}
@@ -74,6 +75,7 @@ export default function Navbar() {
             <a href="#features" className="hover:text-lime-500 transition-colors">Features</a>
             <a href="#demo" className="hover:text-lime-500 transition-colors">Demo</a>
             <a href="#impact" className="hover:text-lime-500 transition-colors">Impact</a>
+            <a href="/marketplace" className="hover:text-lime-500 transition-colors">MarketPlace</a>
             <a href="#investors" className="hover:text-lime-500 transition-colors">Investors</a>
             <a href="#contact" className="hover:text-lime-500 transition-colors">Contact</a>
             <button className="bg-lime-500 text-black px-4 py-2 rounded-lg hover:bg-lime-400 transition-colors font-medium">

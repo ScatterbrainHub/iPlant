@@ -158,6 +158,7 @@ export const MobileMenu = ({ isOpen, onClose, isDark, setIsDark }) => {
         { href: '#features', label: 'Features' },
         { href: '#demo', label: 'Demo' },
         { href: '#impact', label: 'Impact' },
+        { href: '/marketplace', label: 'MarketPlace' },
         { href: '#investors', label: 'Investors' },
         { href: '#contact', label: 'Contact' }
     ];
