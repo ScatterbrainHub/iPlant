@@ -4,7 +4,7 @@ import { Moon, Sun, Play, Users, TrendingUp, MapPin, Leaf, BarChart3, Shield, Sm
 // Theme Context
 const ThemeContext = React.createContext();
 
-const useTheme = () => {
+export const useTheme = () => {
     const context = React.useContext(ThemeContext);
     if (!context) {
         throw new Error('useTheme must be used within a ThemeProvider');
@@ -12,7 +12,7 @@ const useTheme = () => {
     return context;
 };
 
-const ThemeProvider = ({ children }) => {
+export const ThemeProvider = ({ children }) => {
     const [isDark, setIsDark] = useState(false);
 
     const themeClasses = isDark
@@ -31,7 +31,7 @@ const ThemeProvider = ({ children }) => {
 };
 
 // Navigation Component
-const Navigation = () => {
+export const Navigation = () => {
     const { isDark, setIsDark } = useTheme();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -95,14 +95,14 @@ const Navigation = () => {
     );
 };
 
-const Logo = () => (
+export const Logo = () => (
     <div className="flex items-center space-x-2">
         <Leaf className="h-8 w-8 text-lime-500" />
         <span className="text-xl font-bold">Digital Agronomist</span>
     </div>
 );
 
-const NavLinks = () => {
+export const NavLinks = () => {
     const links = [
         { href: '#features', label: 'Features' },
         { href: '#demo', label: 'Demo' },
@@ -127,7 +127,7 @@ const NavLinks = () => {
     );
 };
 
-const NavActions = ({ isDark, setIsDark }) => (
+export const NavActions = ({ isDark, setIsDark }) => (
     <div className="hidden md:flex items-center space-x-4">
         <ThemeToggle isDark={isDark} setIsDark={setIsDark} />
         <Button variant="primary">Sign Up</Button>
@@ -136,7 +136,7 @@ const NavActions = ({ isDark, setIsDark }) => (
 );
 
 // Mobile Menu Button Component
-const MobileMenuButton = ({ isOpen, setIsOpen }) => (
+export const MobileMenuButton = ({ isOpen, setIsOpen }) => (
     <button
         onClick={() => setIsOpen(!isOpen)}
         className="md:hidden p-2 rounded-lg hover:bg-lime-500/10 transition-colors"
@@ -151,7 +151,7 @@ const MobileMenuButton = ({ isOpen, setIsOpen }) => (
 );
 
 // Mobile Menu Component
-const MobileMenu = ({ isOpen, onClose, isDark, setIsDark }) => {
+export const MobileMenu = ({ isOpen, onClose, isDark, setIsDark }) => {
     const { themeClasses } = useTheme();
 
     const links = [
@@ -239,7 +239,7 @@ const MobileMenu = ({ isOpen, onClose, isDark, setIsDark }) => {
     );
 };
 
-const ThemeToggle = ({ isDark, setIsDark }) => (
+export const ThemeToggle = ({ isDark, setIsDark }) => (
     <button
         onClick={() => setIsDark(!isDark)}
         className="p-2 rounded-lg hover:bg-lime-500/10 transition-colors"

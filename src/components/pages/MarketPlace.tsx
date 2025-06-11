@@ -1,5 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import { Search, Filter, Grid, List, Bell, User, Menu, X, ChevronDown } from 'lucide-react';
+import { Search, Grid, List } from 'lucide-react';
+import { Navigation } from './LandingPage';
+import Navbar from '../Navbar';
 
 // Mock shadcn/ui components (simplified versions)
 const Card = ({ children, className = "" }) => (
@@ -246,9 +248,12 @@ export default function MarketPlace() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <header>
+        <Navbar />
+      </header>
       
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24">
         {/* Page Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Product Catalog</h1>
