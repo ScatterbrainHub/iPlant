@@ -1,6 +1,6 @@
 {
-  "name": "iPlant",
   "homepage": "https://scatterbrainhub.github.io/iPlant/",
+  "name": "iPlant",
   "private": true,
   "type": "module",
   "scripts": {
