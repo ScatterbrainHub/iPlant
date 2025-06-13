@@ -8,4 +8,4 @@ iPlant is licensed under the iPlant Custom License v1.0.
 3. **No Redistribution:** You may not distribute the Software or any part of it to any third party.
 4. **Brand Protection:** The name "iPlant", its logo, brand elements, and UI/UX are protected. Unauthorized use is prohibited.
 5. **No Warranty:** This Software is provided "as is", without warranty of any kind. Use at your own risk.
-6. **Permissions:** For demonstrations, case studies, or collaborations, contact [website].
+6. **Permissions:** For demonstrations, case studies, or collaborations, contact [Website](https://linktr.ee/scatterbrainhub).

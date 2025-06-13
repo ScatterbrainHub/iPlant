@@ -34,7 +34,7 @@ cd iPlant
 npm install
 npm run dev
 ```
-See [GETTINGSTARTED](./GETTINGSTARTED) to get started with TanStack app
+See [GETTINGSTARTED](./GETTINGSTARTED.md) to get started with TanStack app
 
 ## Target Users
 - **Tree Vendors/Nursery Operators** - Expand market reach and manage inventory
@@ -59,7 +59,7 @@ Collaborating with:
 - Research institutions and conservation organizations
 
 ## License
-See [LICENSE](./LICENSE) file for details
+See [LICENSE](./LICENSE.md) file for details
 
 ## Contact
 - **Website**: [Website](https://linktr.ee/scatterbrainhub)
