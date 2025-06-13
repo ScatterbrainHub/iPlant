@@ -1,10 +1,10 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { Search, Grid, List, Badge } from 'lucide-react';
 import Navbar from '../Navbar';
 import { Input } from '../ui/input';
 import { Select, SelectItem } from '../ui/select';
 import { Button } from '../ui/button';
-import { CardAction, CardContent, type Card } from '../ui/card';
+import { CardAction, CardContent, } from '../ui/card';
 
 
 
