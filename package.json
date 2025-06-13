@@ -9,7 +9,7 @@
     "build": "vite build",
     "serve": "vite preview",
     "test": "vitest run",
-    "predeploy": "npm run build", 
+    "predeploy": "npm run build",
     "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
