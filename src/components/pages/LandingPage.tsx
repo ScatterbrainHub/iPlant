@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Moon, Sun, Play, Users, TrendingUp, MapPin, Leaf, BarChart3, Shield, Smartphone, CheckCircle, Menu, X } from 'lucide-react';
+import { Moon, Sun, Play, Users, TrendingUp, MapPin, Leaf, BarChart3, Shield, Smartphone, Menu, X, type LucideIcon } from 'lucide-react';
 
 // Theme Context
-const ThemeContext = React.createContext();
+type ThemeContextType = {
+    isDark: boolean;
+    setIsDark: React.Dispatch<React.SetStateAction<boolean>>;
+    themeClasses: string;
+    cardClasses: string;
+};
 
-export const useTheme = () => {
+const ThemeContext = React.createContext<ThemeContextType | undefined>(undefined);
+
+export const useTheme = (): ThemeContextType => {
     const context = React.useContext(ThemeContext);
     if (!context) {
         throw new Error('useTheme must be used within a ThemeProvider');
@@ -12,7 +19,11 @@ export const useTheme = () => {
     return context;
 };
 
-export const ThemeProvider = ({ children }) => {
+type ThemeProviderProps = {
+    children: React.ReactNode;
+};
+
+export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     const [isDark, setIsDark] = useState(false);
 
     const themeClasses = isDark
@@ -29,6 +40,7 @@ export const ThemeProvider = ({ children }) => {
         </ThemeContext.Provider>
     );
 };
+
 
 // Navigation Component
 export const Navigation = () => {
@@ -127,7 +139,12 @@ export const NavLinks = () => {
     );
 };
 
-export const NavActions = ({ isDark, setIsDark }) => (
+type NavActionsProps = {
+    isDark: boolean;
+    setIsDark: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const NavActions: React.FC<NavActionsProps> = ({ isDark, setIsDark }) => (
     <div className="hidden md:flex items-center space-x-4">
         <ThemeToggle isDark={isDark} setIsDark={setIsDark} />
         <Button variant="primary">Sign Up</Button>
@@ -136,22 +153,31 @@ export const NavActions = ({ isDark, setIsDark }) => (
 );
 
 // Mobile Menu Button Component
-export const MobileMenuButton = ({ isOpen, setIsOpen }) => (
+type MobileMenuButtonProps = {
+    isOpen: boolean;
+    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const MobileMenuButton: React.FC<MobileMenuButtonProps> = ({ isOpen, setIsOpen }) => (
     <button
         onClick={() => setIsOpen(!isOpen)}
         className="md:hidden p-2 rounded-lg hover:bg-lime-500/10 transition-colors"
         aria-label="Toggle mobile menu"
     >
-        {isOpen ? (
-            <X className="h-6 w-6" />
-        ) : (
-            <Menu className="h-6 w-6" />
-        )}
+        {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
     </button>
 );
 
+
 // Mobile Menu Component
-export const MobileMenu = ({ isOpen, onClose, isDark, setIsDark }) => {
+type MobileMenuProps = {
+    isOpen: boolean;
+    onClose: () => void;
+    isDark: boolean;
+    setIsDark: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, isDark, setIsDark }) => {
     const { themeClasses } = useTheme();
 
     const links = [
@@ -240,29 +266,53 @@ export const MobileMenu = ({ isOpen, onClose, isDark, setIsDark }) => {
     );
 };
 
-export const ThemeToggle = ({ isDark, setIsDark }) => (
+type ThemeToggleProps = {
+  isDark: boolean;
+  setIsDark: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const ThemeToggle: React.FC<ThemeToggleProps> = ({ isDark, setIsDark }) => {
+  return (
     <button
-        onClick={() => setIsDark(!isDark)}
-        className="p-2 rounded-lg hover:bg-lime-500/10 transition-colors"
+      onClick={() => setIsDark(!isDark)}
+      className="p-2 rounded-lg hover:bg-lime-500/10 transition-colors focus:outline-none focus:ring-2 focus:ring-lime-500"
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
     >
+      <span className="sr-only">{isDark ? "Light Mode" : "Dark Mode"}</span>
+      <div className="transition-all duration-300 ease-in-out">
         {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+      </div>
     </button>
-);
+  );
+};
 
 // Button Component
-const Button = ({ children, variant = 'primary', size = 'md', className = '', ...props }) => {
-    const baseClasses = 'font-medium rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center';
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+    variant?: 'primary' | 'outline' | 'secondary';
+    size?: 'sm' | 'md' | 'lg';
+    className?: string;
+};
+
+export const Button: React.FC<ButtonProps> = ({
+    children,
+    variant = 'primary',
+    size = 'md',
+    className = '',
+    ...props
+}) => {
+    const baseClasses =
+        'font-medium rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center';
 
     const variants = {
         primary: 'bg-lime-500 text-black hover:bg-lime-400',
         outline: 'border border-lime-500 text-lime-500 hover:bg-lime-500 hover:text-black',
-        secondary: 'border-2 border-white text-white hover:bg-white hover:text-gray-900'
+        secondary: 'border-2 border-white text-white hover:bg-white hover:text-gray-900',
     };
 
     const sizes = {
         sm: 'px-4 py-2 text-sm',
         md: 'px-4 py-2',
-        lg: 'px-8 py-4 text-lg'
+        lg: 'px-8 py-4 text-lg',
     };
 
     return (
@@ -275,44 +325,40 @@ const Button = ({ children, variant = 'primary', size = 'md', className = '', ..
     );
 };
 
+
 // Hero Section Component
-const HeroSection = () => {
+export const HeroBackground: React.FC = () => {
     const { isDark } = useTheme();
 
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-            <HeroBackground isDark={isDark} />
-            <HeroContent />
-        </section>
+        <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, ${isDark ? '0.7' : '0.5'}), rgba(0, 0, 0, ${isDark ? '0.7' : '0.5'})), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%2334d399;stop-opacity:0.3" /><stop offset="100%" style="stop-color:%2310b981;stop-opacity:0.1" /></linearGradient></defs><rect width="1200" height="800" fill="url(%23grad1)"/><path d="M0,400 Q300,200 600,350 T1200,300 L1200,800 L0,800 Z" fill="%2365a30d" opacity="0.1"/></svg>')`,
+            }}
+        />
     );
 };
 
-const HeroBackground = ({ isDark }) => (
-    <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, ${isDark ? '0.7' : '0.5'}), rgba(0, 0, 0, ${isDark ? '0.7' : '0.5'})), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%2334d399;stop-opacity:0.3" /><stop offset="100%" style="stop-color:%2310b981;stop-opacity:0.1" /></linearGradient></defs><rect width="1200" height="800" fill="url(%23grad1)"/><path d="M0,400 Q300,200 600,350 T1200,300 L1200,800 L0,800 Z" fill="%2365a30d" opacity="0.1"/></svg>')`
-        }}
-    />
-);
-
-const HeroContent = () => (
-    <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
+export const HeroSection: React.FC = () => {
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <HeroBackground />
+      <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
         <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
-            Transforming Kenya's{' '}
-            <span className="text-lime-500">Agroforestry</span>{' '}
-            Future
+          Transforming Kenya's <span className="text-lime-500">Agroforestry</span> Future
         </h1>
         <p className="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
-            Optimizing Tree Vendors For Growth, Agro-Industry Through Digital Innovation
+          Optimizing Tree Vendors For Growth, Agro-Industry Through Digital Innovation
         </p>
-
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="primary" size="lg">Watch Demo</Button>
-            <Button variant="secondary" size="lg">Start Your Journey</Button>
+          <Button variant="primary" size="lg">Watch Demo</Button>
+          <Button variant="secondary" size="lg">Start Your Journey</Button>
         </div>
-    </div>
-);
+      </div>
+    </section>
+  );
+};
 
 // Mission Statement Component
 const MissionStatement = () => (
@@ -329,7 +375,13 @@ const MissionStatement = () => (
 );
 
 // Statistics Card Component
-const StatCard = ({ icon: Icon, value, label }) => {
+type StatCardProps = {
+    icon: React.ElementType;
+    value: string;
+    label: string;
+};
+
+const StatCard: React.FC<StatCardProps> = ({ icon: Icon, value, label }) => {
     const { cardClasses } = useTheme();
 
     return (
@@ -341,8 +393,7 @@ const StatCard = ({ icon: Icon, value, label }) => {
     );
 };
 
-// Impact Statistics Section
-const ImpactSection = () => {
+export const ImpactSection: React.FC = () => {
     const stats = [
         { label: 'Trees Target', value: '15B', icon: Leaf },
         { label: 'Seedlings/Year', value: '384M', icon: TrendingUp },
@@ -365,18 +416,24 @@ const ImpactSection = () => {
 };
 
 // Feature Card Component
-const FeatureCard = ({ icon: Icon, title, description }) => {
-    const { cardClasses } = useTheme();
+type FeatureCardProps = {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+};
 
-    return (
-        <div className={`${cardClasses} p-6 rounded-xl border transition-all duration-300 hover:border-lime-500 hover:shadow-lg transform hover:-translate-y-2`}>
-            <div className="flex justify-center">
-                <Icon className="h-12 w-12 text-lime-500 mb-4" />
-            </div>
-            <h3 className="text-xl font-semibold mb-3">{title}</h3>
-            <p className="text-gray-600 dark:text-gray-400">{description}</p>
-        </div>
-    );
+export const FeatureCard: React.FC<FeatureCardProps> = ({ icon: Icon, title, description }) => {
+  const { cardClasses } = useTheme();
+
+  return (
+    <div className={`${cardClasses} p-6 rounded-xl border transition-all duration-300 hover:border-lime-500 hover:shadow-lg transform hover:-translate-y-2`}>
+      <div className="flex justify-center">
+        <Icon className="h-12 w-12 text-lime-500 mb-4" />
+      </div>
+      <h3 className="text-xl font-semibold mb-3">{title}</h3>
+      <p className="text-gray-600 dark:text-gray-400">{description}</p>
+    </div>
+  );
 };
 
 // Features Section
@@ -461,15 +518,25 @@ const VideoPlayer = () => (
 );
 
 // Benefit Card Component
-const BenefitCard = ({ icon: Icon, title, description }) => (
-    <div className="text-center">
-        <div className="w-16 h-16 bg-lime-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Icon className="h-8 w-8 text-lime-500" />
+type BenefitCardProps = {
+    icon: LucideIcon;
+    title: string;
+    description: string;
+};
+
+export const BenefitCard: React.FC<BenefitCardProps> = ({ icon: Icon, title, description }) => {
+    const { cardClasses } = useTheme();
+
+    return (
+        <div className={`${cardClasses} text-center p-6 rounded-xl border transition hover:border-lime-500`}>
+            <div className="w-16 h-16 bg-lime-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Icon className="h-8 w-8 text-lime-500" />
+            </div>
+            <h3 className="text-xl font-semibold mb-4">{title}</h3>
+            <p className="text-gray-600 dark:text-gray-400">{description}</p>
         </div>
-        <h3 className="text-xl font-semibold mb-4">{title}</h3>
-        <p className="text-gray-600 dark:text-gray-400">{description}</p>
-    </div>
-);
+    );
+};
 
 // Who Benefits Section
 const WhoBenefitsSection = () => {
@@ -597,11 +664,14 @@ const FooterCopyright = () => (
 );
 
 // Reusable Section Title Component
-const SectionTitle = ({ children, className = '' }) => (
-    <h2 className={`text-3xl font-bold text-center mb-16 ${className}`}>
-        {children}
-    </h2>
+type SectionTitleProps = {
+    children: React.ReactNode;
+};
+
+export const SectionTitle: React.FC<SectionTitleProps> = ({ children }) => (
+    <h2 className="text-3xl font-bold text-center mb-10">{children}</h2>
 );
+
 
 // Main App Component
 const DigitalAgronomist = () => {

@@ -1,5 +1,4 @@
 import MarketPlace from '@/components/pages/MarketPlace'
-import TreeSeedlingCatalog from '@/components/pages/MarketPlace'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/marketplace')({
