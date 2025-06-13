@@ -1,97 +1,12 @@
-import React, { useState, useMemo } from 'react';
-import { Search, Grid, List } from 'lucide-react';
-import { Navigation } from './LandingPage';
+import { useState, useMemo } from 'react';
+import { Search, Grid, List, Badge } from 'lucide-react';
 import Navbar from '../Navbar';
+import { Input } from '../ui/input';
+import { Select, SelectItem } from '../ui/select';
+import { Button } from '../ui/button';
+import { CardAction, CardContent, } from '../ui/card';
 
-// Mock shadcn/ui components (simplified versions)
-const Card = ({ children, className = "" }) => (
-  <div className={`bg-white rounded-lg shadow-sm border ${className}`}>
-    {children}
-  </div>
-);
 
-const CardContent = ({ children, className = "" }) => (
-  <div className={`p-4 ${className}`}>
-    {children}
-  </div>
-);
-
-const Input = ({ className = "", ...props }) => (
-  <input
-    className={`flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent ${className}`}
-    {...props}
-  />
-);
-
-const Button = ({ children, className = "", variant = "default", size = "default", ...props }) => {
-  const baseClasses = "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
-  const variants = {
-    default: "bg-green-600 text-white hover:bg-green-700 focus:ring-green-500",
-    outline: "border border-gray-300 bg-white hover:bg-gray-50 focus:ring-gray-500",
-    ghost: "hover:bg-gray-100 focus:ring-gray-500"
-  };
-  const sizes = {
-    default: "h-10 py-2 px-4",
-    sm: "h-9 px-3",
-    lg: "h-11 px-8"
-  };
-  
-  return (
-    <button
-      className={`${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-};
-
-const Badge = ({ children, className = "" }) => (
-  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 ${className}`}>
-    {children}
-  </span>
-);
-
-const Select = ({ children, onValueChange, defaultValue }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState(defaultValue || '');
-
-  return (
-    <div className="relative">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500"
-      >
-        <span>{selected || 'Select...'}</span>
-        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
-      {isOpen && (
-        <div className="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg">
-          {React.Children.map(children, (child) =>
-            React.cloneElement(child, {
-              onClick: () => {
-                setSelected(child.props.value);
-                onValueChange?.(child.props.value);
-                setIsOpen(false);
-              }
-            })
-          )}
-        </div>
-      )}
-    </div>
-  );
-};
-
-const SelectItem = ({ children, value, onClick }) => (
-  <div
-    className="px-3 py-2 text-sm hover:bg-gray-100 cursor-pointer"
-    onClick={onClick}
-  >
-    {children}
-  </div>
-);
 
 // Tree seedling data
 const treeData = [
@@ -224,9 +139,7 @@ export default function MarketPlace() {
   const [selectedGrowthStage, setSelectedGrowthStage] = useState('');
   const [selectedClimate, setSelectedClimate] = useState('');
   const [viewMode, setViewMode] = useState('grid');
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
-
+  
   const filteredTrees = useMemo(() => {
     return treeData.filter(tree => {
       const matchesSearch = tree.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -354,7 +267,7 @@ export default function MarketPlace() {
         {/* Product Grid */}
         <div className={`grid gap-6 ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1'}`}>
           {filteredTrees.map((tree) => (
-            <Card key={tree.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-200">
+            <CardAction key={tree.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-200">
               <div className="aspect-square bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center">
                 <span className="text-6xl">{tree.image}</span>
               </div>
@@ -377,7 +290,7 @@ export default function MarketPlace() {
                   </div>
                 </div>
               </CardContent>
-            </Card>
+            </CardAction>
           ))}
         </div>
 
