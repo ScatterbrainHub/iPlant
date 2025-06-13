@@ -8,7 +8,7 @@ import { resolve } from "node:path";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [TanStackRouterVite({ autoCodeSplitting: true }), viteReact(), tailwindcss()],
-  base: '/iPlant/',
+  base: "/iPlant/",
   test: {
     globals: true,
     environment: "jsdom",
