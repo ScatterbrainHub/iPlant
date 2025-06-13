@@ -1,10 +1,24 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 
-const AccountTypeCard = ({ type, isSelected, onClick, icon, description }) => (
+type AccountTypeCardProps = {
+  type: string;
+  icon: string;
+  description: string;
+  isSelected: boolean;
+  onClick: (type: string) => void;
+};
+
+const AccountTypeCard: React.FC<AccountTypeCardProps> = ({
+  type,
+  icon,
+  description,
+  isSelected,
+  onClick,
+}) => (
   <button
     type="button"
     onClick={() => onClick(type)}
@@ -24,35 +38,34 @@ export default function DigitalAgronomistSignup() {
   const [phoneNumber, setPhoneNumber] = useState('');
 
   const accountTypes = [
-    { 
-      type: 'Tree Vendor', 
-      icon: '🌳', 
-      description: 'Sell trees and saplings' 
+    {
+      type: 'Tree Vendor',
+      icon: '🌳',
+      description: 'Sell trees and saplings'
     },
-    { 
-      type: 'Farmer', 
-      icon: '👨‍🌾', 
-      description: 'Grow and manage crops' 
+    {
+      type: 'Farmer',
+      icon: '👨‍🌾',
+      description: 'Grow and manage crops'
     },
-    { 
-      type: 'Consultant', 
-      icon: '📊', 
-      description: 'Provide expert advice' 
+    {
+      type: 'Consultant',
+      icon: '📊',
+      description: 'Provide expert advice'
     },
-    { 
-      type: 'Buyer', 
-      icon: '🛒', 
-      description: 'Purchase agricultural products' 
+    {
+      type: 'Buyer',
+      icon: '🛒',
+      description: 'Purchase agricultural products'
     }
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br">
-      {/* Main Content */}
       <main className="flex items-center justify-center min-h-[calc(100vh-80px)] p-4">
-        <div className="w-full max-w bg-white rounded-lg p-8">
+        <div className="w-full max-w-md bg-white rounded-lg p-8">
           <div className="space-y-12">
-      
+
             <div className="text-center space-y-2">
               <h1 className="text-2xl font-bold text-gray-900">Create your account</h1>
               <p className="text-gray-600 text-sm">
@@ -91,7 +104,7 @@ export default function DigitalAgronomistSignup() {
             </div>
 
             {/* Continue Button */}
-            <Button 
+            <Button
               type="button"
               className="w-full bg-green-600 hover:bg-green-700 text-white py-2.5"
               disabled={!selectedAccountType || !phoneNumber}
@@ -111,9 +124,9 @@ export default function DigitalAgronomistSignup() {
 
             {/* Social Login Buttons */}
             <div className="grid grid-cols-2 gap-3">
-              <Button 
+              <Button
                 type="button"
-                variant="outline" 
+                variant="outline"
                 className="flex items-center justify-center gap-2 py-2.5"
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24">
@@ -136,14 +149,14 @@ export default function DigitalAgronomistSignup() {
                 </svg>
                 <span className="text-sm">Google</span>
               </Button>
-              
-              <Button 
+
+              <Button
                 type="button"
-                variant="outline" 
+                variant="outline"
                 className="flex items-center justify-center gap-2 py-2.5"
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
                 </svg>
                 <span className="text-sm">Email</span>
               </Button>
@@ -152,9 +165,8 @@ export default function DigitalAgronomistSignup() {
             {/* Terms */}
             <p className="text-center text-xs text-gray-500">
               By continuing, you agree to our{' '}
-              <a href="#" className="text-green-600 hover:underline">Terms of Service</a>
-              {' '}and{' '}
-              <a href="#" className="text-green-600 hover:underline">Privacy Policy</a>
+              <a href="#" className="text-green-600 hover:underline">Terms of Service</a> and{' '}
+              <a href="#" className="text-green-600 hover:underline">Privacy Policy</a>.
             </p>
           </div>
         </div>
