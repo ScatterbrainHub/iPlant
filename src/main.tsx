@@ -27,8 +27,8 @@ if (rootElement && !rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <StrictMode>
-      <ThemeProvider> {/* ✅ Add this wrapper */}
-        <RouterProvider router={router} />
+      <ThemeProvider> 
+        <RouterProvider basepath='/iPlant/' router={router} />
       </ThemeProvider>
     </StrictMode>
   );

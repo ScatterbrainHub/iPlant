@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Moon, Sun, Play, Users, TrendingUp, MapPin, Leaf, BarChart3, Shield, Smartphone, Menu, X, type LucideIcon } from 'lucide-react';
+import { Link } from '@tanstack/react-router';
 
 // Theme Context
 type ThemeContextType = {
@@ -147,8 +148,8 @@ type NavActionsProps = {
 export const NavActions: React.FC<NavActionsProps> = ({ isDark, setIsDark }) => (
     <div className="hidden md:flex items-center space-x-4">
         <ThemeToggle isDark={isDark} setIsDark={setIsDark} />
-        <Button variant="primary">Sign Up</Button>
-        <Button variant="outline">Login</Button>
+        <Button variant="primary"><Link to='/login'>Login</Link></Button>
+        <Button variant="outline"><Link to='/dashboard/dashboard'>Dashboard</Link></Button>
     </div>
 );
 
@@ -267,23 +268,23 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, isDark,
 };
 
 type ThemeToggleProps = {
-  isDark: boolean;
-  setIsDark: React.Dispatch<React.SetStateAction<boolean>>;
+    isDark: boolean;
+    setIsDark: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const ThemeToggle: React.FC<ThemeToggleProps> = ({ isDark, setIsDark }) => {
-  return (
-    <button
-      onClick={() => setIsDark(!isDark)}
-      className="p-2 rounded-lg hover:bg-lime-500/10 transition-colors focus:outline-none focus:ring-2 focus:ring-lime-500"
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-    >
-      <span className="sr-only">{isDark ? "Light Mode" : "Dark Mode"}</span>
-      <div className="transition-all duration-300 ease-in-out">
-        {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-      </div>
-    </button>
-  );
+    return (
+        <button
+            onClick={() => setIsDark(!isDark)}
+            className="p-2 rounded-lg hover:bg-lime-500/10 transition-colors focus:outline-none focus:ring-2 focus:ring-lime-500"
+            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+        >
+            <span className="sr-only">{isDark ? "Light Mode" : "Dark Mode"}</span>
+            <div className="transition-all duration-300 ease-in-out">
+                {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </div>
+        </button>
+    );
 };
 
 // Button Component
@@ -341,23 +342,26 @@ export const HeroBackground: React.FC = () => {
 };
 
 export const HeroSection: React.FC = () => {
-  return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <HeroBackground />
-      <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
-          Transforming Kenya's <span className="text-lime-500">Agroforestry</span> Future
-        </h1>
-        <p className="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
-          Optimizing Tree Vendors For Growth, Agro-Industry Through Digital Innovation
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button variant="primary" size="lg">Watch Demo</Button>
-          <Button variant="secondary" size="lg">Start Your Journey</Button>
-        </div>
-      </div>
-    </section>
-  );
+    return (
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <HeroBackground />
+            <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
+                <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
+                    Transforming Kenya's <span className="text-lime-500">Agroforestry</span> Future
+                </h1>
+                <p className="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
+                    Optimizing Tree Vendors For Growth, Agro-Industry Through Digital Innovation
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Button variant="primary" size="lg">Watch Demo</Button>
+                    <Button variant="secondary" size="lg">Start Your Journey</Button>
+                    <Button variant="primary"><Link to='/dashboard/SeedlingPage'>Personal</Link></Button>
+                    <Button variant="primary"><Link to='/dashboard/welcomeboard'>Seedlings</Link></Button>
+                    <Button variant="outline"><Link to='/dashboard/TreeSeedlingCatalog'>Tree Seedling Dashboard</Link></Button>
+                </div>
+            </div>
+        </section>
+    );
 };
 
 // Mission Statement Component
@@ -417,23 +421,23 @@ export const ImpactSection: React.FC = () => {
 
 // Feature Card Component
 type FeatureCardProps = {
-  icon: LucideIcon;
-  title: string;
-  description: string;
+    icon: LucideIcon;
+    title: string;
+    description: string;
 };
 
 export const FeatureCard: React.FC<FeatureCardProps> = ({ icon: Icon, title, description }) => {
-  const { cardClasses } = useTheme();
+    const { cardClasses } = useTheme();
 
-  return (
-    <div className={`${cardClasses} p-6 rounded-xl border transition-all duration-300 hover:border-lime-500 hover:shadow-lg transform hover:-translate-y-2`}>
-      <div className="flex justify-center">
-        <Icon className="h-12 w-12 text-lime-500 mb-4" />
-      </div>
-      <h3 className="text-xl font-semibold mb-3">{title}</h3>
-      <p className="text-gray-600 dark:text-gray-400">{description}</p>
-    </div>
-  );
+    return (
+        <div className={`${cardClasses} p-6 rounded-xl border transition-all duration-300 hover:border-lime-500 hover:shadow-lg transform hover:-translate-y-2`}>
+            <div className="flex justify-center">
+                <Icon className="h-12 w-12 text-lime-500 mb-4" />
+            </div>
+            <h3 className="text-xl font-semibold mb-3">{title}</h3>
+            <p className="text-gray-600 dark:text-gray-400">{description}</p>
+        </div>
+    );
 };
 
 // Features Section
