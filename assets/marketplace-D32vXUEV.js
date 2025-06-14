@@ -1,0 +1,1 @@
+import{j as o}from"./index-ePzmreoO.js";import{M as t}from"./MarketPlace-Dw3sC_R_.js";import"./index-CZVm2Vx3.js";import"./button-l9V90ug1.js";import"./Combination-BpMa9KLP.js";import"./card-XZneDBWn.js";import"./badge-DQcaJzRI.js";import"./search-BDaIBr1L.js";const x=function(){return o.jsx("div",{children:o.jsx(t,{})})};export{x as component};
